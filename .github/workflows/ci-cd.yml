@@ -57,19 +57,33 @@ jobs:
     - name: Build application
       run: npm run build
     
-    - name: Deploy to staging
-      run: |
-        echo "🚀 Deploying to staging environment..."
-        echo "Application deployed successfully!"
-        echo "URL: https://your-app-staging.herokuapp.com"
+    - name: Deploy to GitHub Pages
+      if: github.ref == 'refs/heads/main'
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./
+        publish_branch: gh-pages
     
-    # Uncomment และแก้ไขส่วนนี้เมื่อต้องการ deploy จริง
+    - name: Notify GitHub Pages deployment
+      run: |
+        echo "🚀 Deployed to GitHub Pages!"
+        echo "URL: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}"
+    
+    # Deploy to Heroku (uncomment เมื่อต้องการใช้งาน)
     # - name: Deploy to Heroku
     #   uses: akhileshns/heroku-deploy@v3.12.12
     #   with:
-    #     heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+    #     heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
     #     heroku_app_name: "your-app-name"
     #     heroku_email: "your-email@example.com"
+    
+    # Deploy to Railway (alternative แทน Heroku)
+    # - name: Deploy to Railway
+    #   uses: bervProject/railway-deploy@v1.0.0
+    #   with:
+    #     railway_token: ${{ secrets.RAILWAY_TOKEN }}
+    #     service: "your-service-name"
     
     - name: Notify success
       run: |

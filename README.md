@@ -2,12 +2,16 @@
 
 โปรเจกต์ตัวอย่างสำหรับการใช้งาน CI/CD pipeline ด้วย GitHub Actions
 
+## 🌐 Live Demo
+[![Live Demo](https://img.shields.io/badge/Live-Demo-brightgreen)](https://your-username.github.io/your-repo-name)
+
 ## 📋 คุณสมบัติ
 
 - ✅ Express.js web server
 - ✅ Automated testing with Jest
 - ✅ Code linting with ESLint
 - ✅ CI/CD pipeline with GitHub Actions
+- ✅ GitHub Pages deployment
 - ✅ Multi-environment support
 - ✅ Responsive web interface
 
