@@ -11,7 +11,9 @@ app.get('/api/health', (req, res) => {
     res.json({ 
         status: 'OK', 
         message: 'Server is running!',
-        timestamp: new Date().toISOString()
+        timestamp: new Date().toISOString(),
+        // เพิ่มบั๊กที่จะทำให้ test fail
+        testBug: undefined.toString() // ← Error! จะทำให้ test ล้มเหลว
     });
 });
 
