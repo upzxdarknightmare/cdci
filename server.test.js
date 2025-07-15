@@ -2,6 +2,18 @@ const request = require('supertest');
 const app = require('./server');
 
 describe('Server Tests', () => {
+    let server;
+
+    beforeAll(() => {
+        // เริ่มเซิร์ฟเวอร์สำหรับการทดสอบ
+        server = app.listen(0); // ใช้ port 0 เพื่อให้ระบบเลือก port ว่าง
+    });
+
+    afterAll((done) => {
+        // ปิดเซิร์ฟเวอร์หลังจากทดสอบเสร็จ
+        server.close(done);
+    });
+
     test('GET / should return 200', async () => {
         const response = await request(app).get('/');
         expect(response.status).toBe(200);
